@@ -1,0 +1,35 @@
+{
+  "name": "feishu_ai_docs_manager",
+  "version": "1.0.0",
+  "category": "knowledge",
+  "type": "tool",
+  "description": "飞书AI文件夹文档管理技能。用于调用飞书开放平台API，对AI文件夹下文档执行列出、创建、写入、查看正文、查看目录以及连通性自检。适用于飞书文档自动化管理场景。",
+  "author": "Codex",
+  "tags": ["feishu", "docs", "folder", "automation"],
+  "secrets": [
+    {
+      "key": "FEISHU_APP_ID",
+      "label": "飞书 App ID",
+      "placeholder": "cli_xxx",
+      "help": "飞书开放平台应用的 App ID",
+      "masked": false,
+      "required": true
+    },
+    {
+      "key": "FEISHU_APP_SECRET",
+      "label": "飞书 App Secret",
+      "placeholder": "xxxx",
+      "help": "飞书开放平台应用的 App Secret",
+      "masked": true,
+      "required": true
+    },
+    {
+      "key": "FEISHU_AI_FOLDER_TOKEN",
+      "label": "AI 文件夹 Token",
+      "placeholder": "fldcnxxxx",
+      "help": "默认操作的 AI 文件夹 token，可在调用时被 ai_folder_token 覆盖",
+      "masked": false,
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "type": "function",
+  "function": {
+    "name": "feishu_ai_docs_manager",
+    "description": "操作 AI 文件夹下飞书文档：列文档、创建文档、写入内容、查看文档内容与目录、执行自检",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "list_folder_docs / create_doc / write_doc / get_doc_content / get_doc_outline / self_test"
+        },
+        "app_id": {
+          "type": "string",
+          "description": "飞书应用 app_id"
+        },
+        "app_secret": {
+          "type": "string",
+          "description": "飞书应用 app_secret"
+        },
+        "ai_folder_token": {
+          "type": "string",
+          "description": "AI 文件夹 token"
+        },
+        "folder_token": {
+          "type": "string",
+          "description": "兼容参数，同 ai_folder_token"
+        },
+        "page_size": {
+          "type": "number",
+          "description": "列表分页条数"
+        },
+        "max_items": {
+          "type": "number",
+          "description": "列表最大拉取条数"
+        },
+        "title": {
+          "type": "string",
+          "description": "创建文档标题"
+        },
+        "document_id": {
+          "type": "string",
+          "description": "文档ID"
+        },
+        "content": {
+          "type": "string",
+          "description": "写入内容"
+        },
+        "index": {
+          "type": "number",
+          "description": "写入位置，默认-1追加"
+        },
+        "max_blocks": {
+          "type": "number",
+          "description": "读取最大块数"
+        },
+        "max_chars": {
+          "type": "number",
+          "description": "读取最大字符数"
+        },
+        "run_write_test": {
+          "type": "boolean",
+          "description": "self_test 是否执行写入链路测试"
+        }
+      },
+      "required": ["action"]
+    }
+  }
+}
