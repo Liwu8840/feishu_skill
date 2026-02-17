@@ -6,13 +6,17 @@
         "type": "string",
         "description": "操作类型：list_folder_docs / create_doc / write_doc / get_doc_content / get_doc_outline / self_test"
       },
+      "access_token": {
+        "type": "string",
+        "description": "个人版推荐：用户 access_token。也可通过环境变量 FEISHU_ACCESS_TOKEN 提供；若提供则优先使用"
+      },
       "app_id": {
         "type": "string",
-        "description": "飞书应用 app_id。也可通过环境变量 FEISHU_APP_ID 提供"
+        "description": "企业版应用 app_id。未提供 access_token 时使用；也可通过 FEISHU_APP_ID 提供"
       },
       "app_secret": {
         "type": "string",
-        "description": "飞书应用 app_secret。也可通过环境变量 FEISHU_APP_SECRET 提供"
+        "description": "企业版应用 app_secret。未提供 access_token 时使用；也可通过 FEISHU_APP_SECRET 提供"
       },
       "ai_folder_token": {
         "type": "string",

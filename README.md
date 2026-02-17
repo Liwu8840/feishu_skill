@@ -20,14 +20,24 @@
 
 ## 使用前准备
 
-1. 在飞书开放平台创建应用并开通文档相关权限。
-2. 获取 `app_id`、`app_secret`。
-3. 获取 AI 文件夹 `folder_token`。
-4. 建议配置环境变量：
+支持两种鉴权模式：
+
+1. 个人版推荐：提供 `access_token`（用户 token，且有文档权限）
+2. 企业版兼容：提供 `app_id` + `app_secret`（走 tenant_access_token）
+
+同时需要 AI 文件夹 `folder_token`。
+
+建议配置环境变量：
 
 ```bash
+# 个人版（推荐）
+export FEISHU_ACCESS_TOKEN="u-xxxx"
+
+# 企业版（可选）
 export FEISHU_APP_ID="cli_xxx"
 export FEISHU_APP_SECRET="xxx"
+
+# 两种模式都可复用
 export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```
 
@@ -47,6 +57,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "list_folder_docs",
+  "access_token": "u-xxxx",
   "ai_folder_token": "fldcnxxxx",
   "page_size": 100,
   "max_items": 500
@@ -58,6 +69,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "create_doc",
+  "access_token": "u-xxxx",
   "ai_folder_token": "fldcnxxxx",
   "title": "测试-需求文档"
 }
@@ -68,6 +80,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "write_doc",
+  "access_token": "u-xxxx",
   "document_id": "doxcnxxxx",
   "content": "这是自动写入内容",
   "index": -1
@@ -79,6 +92,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "get_doc_content",
+  "access_token": "u-xxxx",
   "document_id": "doxcnxxxx"
 }
 ```
@@ -88,6 +102,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "get_doc_outline",
+  "access_token": "u-xxxx",
   "document_id": "doxcnxxxx"
 }
 ```
@@ -97,6 +112,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "self_test",
+  "access_token": "u-xxxx",
   "ai_folder_token": "fldcnxxxx",
   "run_write_test": false
 }
@@ -107,6 +123,7 @@ export FEISHU_AI_FOLDER_TOKEN="fldcnxxxx"
 ```json
 {
   "action": "self_test",
+  "access_token": "u-xxxx",
   "ai_folder_token": "fldcnxxxx",
   "run_write_test": true
 }

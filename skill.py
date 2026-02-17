@@ -9,6 +9,10 @@
 4. get_doc_content: 查看文档文本内容
 5. get_doc_outline: 查看文档目录（标题结构）
 6. self_test: 自检（鉴权、列文档、可选写入测试）
+
+鉴权模式：
+- 个人版优先：传 access_token（或 FEISHU_ACCESS_TOKEN）
+- 企业版兼容：传 app_id + app_secret（或 FEISHU_APP_ID/FEISHU_APP_SECRET）
 """
 
 import json
@@ -391,6 +395,7 @@ def _self_test(token: str, folder_token: str, run_write_test: bool) -> Dict[str,
 
 def run(**kwargs) -> str:
     action = (kwargs.get("action") or kwargs.get("操作") or "").strip()
+    access_token = (kwargs.get("access_token") or os.getenv("FEISHU_ACCESS_TOKEN") or "").strip()
     app_id = (kwargs.get("app_id") or os.getenv("FEISHU_APP_ID") or "").strip()
     app_secret = (kwargs.get("app_secret") or os.getenv("FEISHU_APP_SECRET") or "").strip()
 
@@ -424,11 +429,21 @@ def run(**kwargs) -> str:
         return _json_result(False, "unknown", error="缺少必填参数 action")
     if action not in allowed_actions:
         return _json_result(False, action, error=f"action 不支持，请使用: {', '.join(sorted(allowed_actions))}")
-    if not app_id or not app_secret:
-        return _json_result(False, action, error="缺少 app_id/app_secret，或未设置 FEISHU_APP_ID/FEISHU_APP_SECRET")
 
     try:
-        token = _get_tenant_access_token(app_id, app_secret)
+        if access_token:
+            token = access_token
+        else:
+            if not app_id or not app_secret:
+                return _json_result(
+                    False,
+                    action,
+                    error=(
+                        "缺少鉴权信息。请提供 access_token（个人版推荐）"
+                        "或 app_id/app_secret（企业版），也可使用环境变量。"
+                    ),
+                )
+            token = _get_tenant_access_token(app_id, app_secret)
 
         if action == "list_folder_docs":
             data = _list_folder_docs(token=token, folder_token=folder_token, page_size=int(page_size), max_items=int(max_items))

@@ -8,20 +8,28 @@
   "tags": ["feishu", "docs", "folder", "automation"],
   "secrets": [
     {
+      "key": "FEISHU_ACCESS_TOKEN",
+      "label": "飞书 Access Token",
+      "placeholder": "u-xxxx",
+      "help": "个人版推荐：填写用户 access_token（有文档权限）。若填写则优先使用此 token。",
+      "masked": true,
+      "required": false
+    },
+    {
       "key": "FEISHU_APP_ID",
       "label": "飞书 App ID",
       "placeholder": "cli_xxx",
-      "help": "飞书开放平台应用的 App ID",
+      "help": "企业版自建应用的 App ID（当未提供 FEISHU_ACCESS_TOKEN 时使用）",
       "masked": false,
-      "required": true
+      "required": false
     },
     {
       "key": "FEISHU_APP_SECRET",
       "label": "飞书 App Secret",
       "placeholder": "xxxx",
-      "help": "飞书开放平台应用的 App Secret",
+      "help": "企业版自建应用的 App Secret（当未提供 FEISHU_ACCESS_TOKEN 时使用）",
       "masked": true,
-      "required": true
+      "required": false
     },
     {
       "key": "FEISHU_AI_FOLDER_TOKEN",
